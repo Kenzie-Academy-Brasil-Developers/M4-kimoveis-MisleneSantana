@@ -2,7 +2,7 @@ import { Router } from 'express';
 import { validateBodyMiddleware } from '../middlewares/validateBody.middleware';
 import { userCreateSchema, userUpdateSchema } from '../schemas/user.schema';
 import { createUserController } from '../controllers/user/createUser.controller';
-import { verifyUserEmailExistsMiddleware } from '../middlewares/verifyUserEmailExists.middewares';
+import { verifyUserEmailExistsMiddleware } from '../middlewares/verifyUserEmailExists.middeware';
 import { readUsersController } from '../controllers/user/readUsers.controller';
 import { deleteUserController } from '../controllers/user/deleteUser.controller';
 import { verifyUserIdExistsMiddleware } from '../middlewares/verifyUserIdExists.middleware';

@@ -9,4 +9,3 @@ export type TUserReturn = z.infer<typeof userReturnSchema>;
 export type TUserUpdate = DeepPartial<User>;
 export type TUserRepo = Repository<User>;
 
-// export type TUser = z.infer<typeof userSchema>;
