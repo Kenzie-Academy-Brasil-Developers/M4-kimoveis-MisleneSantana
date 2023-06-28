@@ -6,7 +6,8 @@ export const verifyUserPermissionMiddleware = async (
   res: Response,
   next: NextFunction
 ): Promise<void> => {
-  const { id } = req.body;
+  // const { id } = req.body;
+  const { id } = req.params;
   const { sub, admin } = res.locals.decoded;
 
   if (admin) return next();

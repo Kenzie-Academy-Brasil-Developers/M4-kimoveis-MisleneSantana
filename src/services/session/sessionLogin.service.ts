@@ -11,12 +11,12 @@ export const sessionLoginService = async (userData: TSessionLoginCreate): Promis
   const user: any = await userRepo.findOneBy({ email: userData.email });
 
   if (!user) {
-    throw new AppError('Wrong email/password', 401);
+    throw new AppError('Invalid credentials', 401);
   }
   const matchPassword: boolean = await compare(userData.password, user.password);
 
   if (!matchPassword) {
-    throw new AppError('Wrong email/password', 401);
+    throw new AppError('Invalid credentials', 401);
   }
 
   const token: string = sign(
@@ -31,4 +31,4 @@ export const sessionLoginService = async (userData: TSessionLoginCreate): Promis
   );
 
   return { token };
-}
+};

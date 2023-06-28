@@ -27,10 +27,9 @@ userRouter.patch(
   '/:id',
   validateBodyMiddleware(userUpdateSchema),
   verifyTokenMiddleware,
-  veriFyIsAdminMiddleware,
   verifyUserPermissionMiddleware,
   updateUserController
 );
 
 // 4 - Realiza um soft delete no usuário (Apenas Administradores)
-userRouter.delete('/:id', deleteUserController);
+userRouter.delete('/:id', verifyTokenMiddleware, veriFyIsAdminMiddleware, deleteUserController);
