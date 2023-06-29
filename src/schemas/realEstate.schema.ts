@@ -28,16 +28,3 @@ export const realEstateCreateSchema = z.object({
 });
 
 export const realEstateReadSchema = realEstateCreateSchema.array();
-
-// export const realEstateCreateSchema = realEstateSchema
-//   .omit({
-//     id: true,
-//     sold: true,
-//     createdAt: true,
-//     updatedAt: true,
-//     category: true
-//   })
-//   .extend({
-//     address: addressStateCreateSchema,
-//     categoryId: z.number().int().positive(),
-//   });
