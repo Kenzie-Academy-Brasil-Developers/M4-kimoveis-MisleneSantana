@@ -2,7 +2,7 @@ import { AppDataSource } from '../../data-source';
 import { RealEstate, Schedule, User } from '../../entities';
 import { AppError } from '../../errors/error';
 import { TRealEstateRepo } from '../../interfaces/realEstate.interface';
-import { TScheduleCreate, TScheduleRepo, TScheduleReturn } from '../../interfaces/schedule.interface';
+import { TScheduleCreate, TScheduleRepo } from '../../interfaces/schedule.interface';
 import { TUserRepo } from '../../interfaces/user.interfaces';
 
 export const createScheduleToVisitRealEstateService = async (
@@ -10,9 +10,11 @@ export const createScheduleToVisitRealEstateService = async (
   userId: number
 ): Promise<Schedule> => {
   const realEstateRepo: TRealEstateRepo = AppDataSource.getRepository(RealEstate);
-  const realEstate: RealEstate | null = await realEstateRepo.findOneBy({ id: realEstateId });
+  const realEstateFound: RealEstate | null = await realEstateRepo.findOneBy({ id: realEstateId });
 
-  if (!realEstate) throw new AppError('RealEstate not found', 404);
+  if (!realEstateFound) throw new AppError('RealEstate not found', 404);
+
+  await realEstateRepo.save(realEstateFound);
 
   const userRepo: TUserRepo = AppDataSource.getRepository(User);
   const user: User = (await userRepo.findOneBy({ id: userId }))!;
@@ -21,8 +23,17 @@ export const createScheduleToVisitRealEstateService = async (
   const schedule: Schedule = scheduleRepo.create({
     ...scheduleData,
     user,
-    realEstate,
+    realEstate: realEstateFound,
   });
 
-  return await scheduleRepo.save(schedule);
+  const createSchedule = {
+    ...schedule,
+    message: 'Schedule created',
+  };
+
+  await scheduleRepo.save(createSchedule);
+
+  return createSchedule;
+
+  // return scheduleReturnSchema.parse(createSchedule);
 };

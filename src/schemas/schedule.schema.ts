@@ -23,7 +23,7 @@ export const scheduleCreateSchema = scheduleSchema
     realEstateId: z.number().int().positive(),
   });
 
-export const scheduleReturnSchema = scheduleSchema.extend({
+export const scheduleReturnSchema = scheduleCreateSchema.extend({
   user: userReturnSchema,
 });
 
