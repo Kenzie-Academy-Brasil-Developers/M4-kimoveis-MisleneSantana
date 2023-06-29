@@ -13,16 +13,12 @@ import { veriFyIsAdminMiddleware } from '../middlewares/verifyIsAdmin.middleware
 
 export const userRouter: Router = Router();
 
-// 1 - Criação de usuário (Qualquer usuário, não necessita token)
 userRouter.post('', validateBodyMiddleware(userCreateSchema), verifyUserEmailExistsMiddleware, createUserController);
 
-// 2 - Lista todos os usuários (Apenas Administradores)
 userRouter.get('', verifyTokenMiddleware, verifyUserPermissionMiddleware, veriFyIsAdminMiddleware, readUsersController);
 
-// Verify userId exists:
 userRouter.use('/:id', verifyUserIdExistsMiddleware);
 
-// 3 - Atualiza um usuário (Apenas Administradores ou dono da conta)
 userRouter.patch(
   '/:id',
   validateBodyMiddleware(userUpdateSchema),
@@ -31,5 +27,4 @@ userRouter.patch(
   updateUserController
 );
 
-// 4 - Realiza um soft delete no usuário (Apenas Administradores)
 userRouter.delete('/:id', verifyTokenMiddleware, veriFyIsAdminMiddleware, deleteUserController);

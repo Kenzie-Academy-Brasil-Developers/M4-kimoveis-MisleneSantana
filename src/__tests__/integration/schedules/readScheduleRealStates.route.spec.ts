@@ -38,10 +38,6 @@ describe('GET /schedules/realEstate/:id', () => {
     };
 
     expect(response.status).toBe(expectResults.status);
-    console.log("***************************************************");
-    console.log(expectResults.expectBody);
-    console.log('***************************************************');
-
     expect(response.body).toEqual(expectResults.expectBody);
   });
 
@@ -80,9 +76,7 @@ describe('GET /schedules/realEstate/:id', () => {
   });
 
   it('Error: Must not be able list all real estates schedules - JWT malformed', async () => {
-    const response = await supertest(app)
-      .get(realEstateID)
-      .set('Authorization', `Bearer ${tokenMock.jwtMalformed}`);
+    const response = await supertest(app).get(realEstateID).set('Authorization', `Bearer ${tokenMock.jwtMalformed}`);
 
     expect(response.body).toEqual(errorsMock.jwtMalformed.error);
     expect(response.status).toBe(errorsMock.jwtMalformed.status);

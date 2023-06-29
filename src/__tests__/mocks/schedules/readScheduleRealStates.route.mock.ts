@@ -1,12 +1,6 @@
 import { Repository } from 'typeorm';
 import { AppDataSource } from '../../../data-source';
-import {
-  Address,
-  Category,
-  RealEstate,
-  Schedule,
-  User,
-} from '../../../entities';
+import { Address, Category, RealEstate, Schedule, User } from '../../../entities';
 
 type iRealEstateRepo = Repository<RealEstate>;
 type iAddressRepo = Repository<Address>;
@@ -15,8 +9,7 @@ type iCategoryRepo = Repository<Category>;
 type iScheduleRepo = Repository<Schedule>;
 
 const manySchedules = async () => {
-  const realEstateRepo: iRealEstateRepo =
-    AppDataSource.getRepository(RealEstate);
+  const realEstateRepo: iRealEstateRepo = AppDataSource.getRepository(RealEstate);
   const addressRepo: iAddressRepo = AppDataSource.getRepository(Address);
   const userRepo: iUserRepo = AppDataSource.getRepository(User);
   const categoryRepo: iCategoryRepo = AppDataSource.getRepository(Category);

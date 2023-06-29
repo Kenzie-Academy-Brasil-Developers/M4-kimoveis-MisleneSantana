@@ -1,10 +1,8 @@
-import { Category, RealEstate } from '../../entities/index';
-import { AppDataSource } from '../../data-source';
-import { TCategoryRepo } from '../../interfaces/category.interface';
+import { RealEstate } from '../../entities/index';
 import { AppError } from '../../errors/error';
+import { categoryRepo } from '../../repositories';
 
 export const readAllRealStateFromCategoryService = async (categoryId: number): Promise<RealEstate | null> => {
-  const categoryRepo: TCategoryRepo = AppDataSource.getRepository(Category);
   const categoryEstate: any = await categoryRepo.findOne({
     where: { id: categoryId },
     relations: { realEstate: true },

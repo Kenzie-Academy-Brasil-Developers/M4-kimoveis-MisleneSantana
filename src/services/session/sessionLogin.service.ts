@@ -1,14 +1,11 @@
 import { compare } from 'bcryptjs';
-import { AppDataSource } from '../../data-source';
-import { User } from '../../entities/index';
 import { AppError } from '../../errors/error';
 import { TSessionLoginCreate, TSessionLoginReturn } from '../../interfaces/session.interface';
-import { TUserRepo } from '../../interfaces/user.interfaces';
 import { sign } from 'jsonwebtoken';
+import { userRepo } from '../../repositories';
 
 export const sessionLoginService = async (userData: TSessionLoginCreate): Promise<TSessionLoginReturn> => {
-  const userRepo: TUserRepo = AppDataSource.getRepository(User);
-  const user: any = await userRepo.findOneBy({ email: userData.email });
+  const user = await userRepo.findOneBy({ email: userData.email });
 
   if (!user) {
     throw new AppError('Invalid credentials', 401);

@@ -1,15 +1,14 @@
 import { Router } from 'express';
-import { createRealEstateController } from '../controllers/realState/createRealEstate.controller';
+import { createRealEstateController } from '../controllers/realEstate/createRealEstate.controller';
 import { validateBodyMiddleware } from '../middlewares/validateBody.middleware';
 import { realEstateCreateSchema } from '../schemas/realEstate.schema';
 import { verifyIfTheAddressExistsMiddleware } from '../middlewares/verifyIfTheAddressExists.middleware';
 import { veriFyIsAdminMiddleware } from '../middlewares/verifyIsAdmin.middleware';
 import { verifyTokenMiddleware } from '../middlewares/verifyToken.middleware';
-import { readAllRealEstateController } from '../controllers/realState/readAllRealEstate.controller';
+import { readAllRealEstateController } from '../controllers/realEstate/readAllRealEstate.controller';
 
 export const realStateRouter: Router = Router();
 
-// 1 - Criação de um imóvel (Apenas Administradores)
 realStateRouter.post(
   '',
   verifyTokenMiddleware,
@@ -19,5 +18,4 @@ realStateRouter.post(
   createRealEstateController
 );
 
-// 2 - Lista todos os imóveis (Qualquer usuário, não necessita token)
 realStateRouter.get('', readAllRealEstateController);

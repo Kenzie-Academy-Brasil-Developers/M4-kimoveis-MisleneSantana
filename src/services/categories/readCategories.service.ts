@@ -1,8 +1,6 @@
-import { AppDataSource } from '../../data-source';
-import { Category } from '../../entities';
-import { TCategoryRead, TCategoryRepo } from '../../interfaces/category.interface';
+import { TCategoryRead } from '../../interfaces/category.interface';
+import { categoryRepo } from '../../repositories';
 
 export const readCategoriesService = async (): Promise<TCategoryRead> => {
-  const categoryRepo: TCategoryRepo = AppDataSource.getRepository(Category);
   return await categoryRepo.find();
 };

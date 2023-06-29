@@ -1,10 +1,8 @@
-import { AppDataSource } from '../../data-source';
 import { RealEstate } from '../../entities';
 import { AppError } from '../../errors/error';
-import { TRealEstateRepo } from '../../interfaces/realEstate.interface';
+import { realEstateRepo } from '../../repositories';
 
 export const readAllSchedulesForARealEstate = async (realEstateId: number): Promise<RealEstate | null> => {
-  const realEstateRepo: TRealEstateRepo = AppDataSource.getRepository(RealEstate);
   const realEstate: RealEstate | null = await realEstateRepo.findOne({
     where: { id: realEstateId },
     relations: {
