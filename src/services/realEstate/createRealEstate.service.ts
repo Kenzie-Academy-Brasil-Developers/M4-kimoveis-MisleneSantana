@@ -1,7 +1,7 @@
 import { AppDataSource } from '../../data-source';
 import { Address, Category, RealEstate } from '../../entities';
 import { AppError } from '../../errors/error';
-import { TAddressCreate, TAddressRepo } from '../../interfaces/address.schema';
+import { TAddressCreate, TAddressRepo } from '../../interfaces/address.interface';
 import { TCategoryRepo } from '../../interfaces/category.interface';
 import { TRealEstateCreate, TRealEstateRepo } from '../../interfaces/realEstate.interface';
 

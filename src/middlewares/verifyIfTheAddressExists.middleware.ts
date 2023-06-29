@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { TAddressRepo } from '../interfaces/address.schema';
+import { TAddressRepo } from '../interfaces/address.interface';
 import { AppDataSource } from '../data-source';
 import { Address } from '../entities';
 import { AppError } from '../errors/error';

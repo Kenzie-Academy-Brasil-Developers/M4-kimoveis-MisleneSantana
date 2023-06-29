@@ -3,7 +3,7 @@ import { addressStateCreateSchema, addressStateSchema } from './address.schema';
 import { categorySchema } from './category.schema';
 
 export const realEstateSchema = z.object({
-  id: z.number().positive(),
+  id: z.number().int().positive(),
   value: z
     .number()
     .positive()

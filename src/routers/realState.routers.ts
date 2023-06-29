@@ -3,7 +3,6 @@ import { createRealEstateController } from '../controllers/realState/createRealE
 import { validateBodyMiddleware } from '../middlewares/validateBody.middleware';
 import { realEstateCreateSchema } from '../schemas/realEstate.schema';
 import { verifyIfTheAddressExistsMiddleware } from '../middlewares/verifyIfTheAddressExists.middleware';
-import { verifyCategoryExistsMiddleware } from '../middlewares/verifyCategoryExists.middleware';
 import { veriFyIsAdminMiddleware } from '../middlewares/verifyIsAdmin.middleware';
 import { verifyTokenMiddleware } from '../middlewares/verifyToken.middleware';
 import { readAllRealEstateController } from '../controllers/realState/readAllRealEstate.controller';
