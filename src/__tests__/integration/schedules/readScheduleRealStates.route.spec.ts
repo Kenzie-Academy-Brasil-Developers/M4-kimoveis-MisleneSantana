@@ -38,6 +38,10 @@ describe('GET /schedules/realEstate/:id', () => {
     };
 
     expect(response.status).toBe(expectResults.status);
+    console.log("***************************************************");
+    console.log(expectResults.expectBody);
+    console.log('***************************************************');
+
     expect(response.body).toEqual(expectResults.expectBody);
   });
 

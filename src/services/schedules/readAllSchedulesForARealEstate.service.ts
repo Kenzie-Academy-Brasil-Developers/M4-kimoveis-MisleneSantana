@@ -5,9 +5,15 @@ import { TRealEstateRepo } from '../../interfaces/realEstate.interface';
 
 export const readAllSchedulesForARealEstate = async (realEstateId: number): Promise<RealEstate | null> => {
   const realEstateRepo: TRealEstateRepo = AppDataSource.getRepository(RealEstate);
-  const realEstate = await realEstateRepo.findOne({
+  const realEstate: RealEstate | null = await realEstateRepo.findOne({
     where: { id: realEstateId },
-    relations: { schedules: true, address: true, category: true },
+    relations: {
+      address: true,
+      category: true,
+      schedules: {
+        user: true,
+      },
+    },
   });
 
   if (!realEstate) throw new AppError('RealEstate not found', 404);
